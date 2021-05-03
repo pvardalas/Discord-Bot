@@ -5,24 +5,24 @@ import os
 import youtube_dl
 
 
-client = commands.Bot(command_prefix= '-')
+client = commands.Bot(command_prefix= "-")
 
 OWNERID = 372703407276032020
 
 
 ffmpeg_options = {
-    'options': '-vn'
+    "options": "-vn"
 }
 
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Activity(type=discord.ActivityType.listening, name="-play"))
-    print('Bot is ready...')
+    print("Bot is ready...")
 
 
 @client.command()
 async def ping(ctx):
-    await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
+    await ctx.send(f"Pong! {round(client.latency * 1000)}ms")
 
 
 
@@ -33,7 +33,7 @@ async def clear(ctx, amount=5):
 @client.command(aliases=["anonymiseme"])
 async def anonymise(ctx, *, message):
     await ctx.channel.purge(limit=1)
-    await ctx.send(f'{message}')
+    await ctx.send(f"{message}")
 
 @client.command(name="ban")
 async def removecommandnotforuse(ctx, member: discord.Member, *, reason=None):
@@ -44,7 +44,7 @@ async def removecommandnotforuse(ctx, member: discord.Member, *, reason=None):
     )
     if ctx.author.guild_permissions.ban_members:
         if member.guild_permissions.administrator:
-            await ctx.send("You can't ban a moderator...")
+            await ctx.send("You can"t ban a moderator...")
         else:
             await guild.ban(user=member)
             await ctx.send(embed=mbed)
@@ -64,7 +64,7 @@ async def unremovecommandnotforuse(ctx, *, member):
 
     banned_users = await ctx.guild.bans()
 
-    member_name, member_disc = member.split('#')
+    member_name, member_disc = member.split("#")
     for banned_entry in banned_users:
         user = banned_entry.user
 #
@@ -105,21 +105,21 @@ async def tempremovecommandnotforuse(ctx, member: discord.Member, *, reason=None
 
 @client.command()
 async def load(ctx, extension):
-    client.load_extension(f'cogs.{extension}')
+    client.load_extension(f"cogs.{extension}")
 
 @client.command()
 async def unload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
+    client.unload_extension(f"cogs.{extension}")
 
 @client.command()
 async def reload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
-    client.reload_extension(f'cogs.{extension}')
+    client.unload_extension(f"cogs.{extension}")
+    client.reload_extension(f"cogs.{extension}")
 
 
-for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        client.load_extension(f'cogs.{filename[:-3]}')
+for filename in os.listdir("./cogs"):
+    if filename.endswith(".py"):
+        client.load_extension(f"cogs.{filename[:-3]}")
 
 
 @client.command(name="lock")
@@ -150,14 +150,14 @@ async def on_message(message):
 #        return
 #    else:
 #        await ctx.delete()
-#        await ctx.channel.send(f'{message}')
+#        await ctx.channel.send(f"{message}")
 
 
 
 #    if message.author.bot:
 #        return
 #    else:
-#        await message.channel.send(f'{message.author.name} said {message.content}')
+#        await message.channel.send(f"{message.author.name} said {message.content}")
 
 
 @client.command(pass_context=True)
@@ -170,7 +170,7 @@ async def reacthere(ctx, condition=None, *args):
 
 
 
-    message = ' '.join(args)
+    message = " ".join(args)
     if message == "":
         message = None
 
@@ -195,4 +195,4 @@ async def reacthere(ctx, condition=None, *args):
 
 
 
-client.run('ODM4NTAzNTc0MTM2ODE1Njg4.YI8DTg.i2BhZaq2EQIgf_VeLn8qOK9in5M')
+client.run("ODM4NTAzNTc0MTM2ODE1Njg4.YI8DTg.i2BhZaq2EQIgf_VeLn8qOK9in5M")
